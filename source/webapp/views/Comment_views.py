@@ -17,6 +17,10 @@ class ProductReviewCreateView(LoginRequiredMixin, CreateView):
         review = form.save(commit=False)
         review.product = product
         review.author = self.request.user
+        if not self.request.user.groups.filter(name='Moderators'):
+            review.status = False
+        else:
+            review.status = True
         review.save()
         return redirect('watch_product', pk=product.pk)
 

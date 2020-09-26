@@ -13,14 +13,14 @@ class Products_view(ListView):
     context_object_name = 'products'
 
 
-
-
 class Watch_product_view(DetailView):
     template_name = 'products/watch_product.html'
     model = Product
 
     def get_context_data(self, **kwargs):
         kwargs['reviews'] = self.object.reviews.all()
+        if not self.request.user.groups.filter(name='Moderators'):
+            kwargs['reviews'] = kwargs['reviews'].filter(status=True)
         average = 0
         if kwargs['reviews']:
             for review in self.object.reviews.all():
@@ -35,6 +35,7 @@ class Create_product_view(PermissionRequiredMixin, CreateView):
     form_class = ProductForm
     template_name = 'products/create_product.html'
     permission_required = 'webapp.add_product'
+
 
     def get_success_url(self):
         return reverse('watch_product', kwargs={'pk': self.object.pk})

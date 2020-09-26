@@ -22,9 +22,12 @@ class Product(models.Model):
     def get_avg_reviews(self):
         average = 0
         if self.reviews.count():
-            for review in self.reviews.all():
+            for review in self.reviews.filter(status=True):
                 average += review.mark
-            average = average / self.reviews.count()
+            try:
+                average = average / self.reviews.filter(status=True).count()
+            except ZeroDivisionError:
+                average = 0
         return round(average, 1)
 
 
@@ -34,3 +37,4 @@ class Review(models.Model):
                                 on_delete=models.CASCADE)
     review = models.TextField(max_length=2000, verbose_name='Описание товара')
     mark = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    status = models.BooleanField(default=False, verbose_name="Статус")

@@ -1,12 +1,11 @@
 {% extends 'todo/../base.html' %}
 {% block title %}
-Delete Project
+Delete Product
 {% endblock %}
 {% block content %}
-<h1>Are you sure to delete Project: {{ object.title }}</h1>
+<h1>Are you sure to delete Product: {{ object.title }}</h1>
     <p>{{ object.description }}</p>
-    <p>Project begin date: {{ object.begin_date }}</p>
-    <p>Project end date: {{ object.end_date }}</p>
+    <p>Product category: {{ object.get_category_display }}</p>
     <form method="POST" action="{% url 'delete_product' object.pk%}">
         {% csrf_token %}
 {#        <input type="submit" value="Confirm">#}

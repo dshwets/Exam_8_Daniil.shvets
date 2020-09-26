@@ -20,24 +20,28 @@ from django.conf.urls.static import static
 
 # from webapp.views import IndexView,CreateTodoView, DeleteTodoView, WatchTodoView, UpdateTodoView, Project_view, \
 #     Watch_project_view, Create_project_view,ProjectToDoCreateView, ProjectUpdateView, ProjectDeleteView, ManageTeamView
+
+
+from webapp.views.ProductView import Products_view, Watch_product_view, Create_product_view, ProductUpdateView, \
+    ProductDeleteView
 from django.contrib.auth.views import LogoutView, LoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', Project_view.as_view(), name='index_view'),
+    path('', Products_view.as_view(), name='index_view'),
     # path('add/', CreateTodoView.as_view(), name='add'),
     # path('todo/<int:pk>/', WatchTodoView.as_view(), name='watch_todo'),
     # path('todo/<int:pk>/delete/', DeleteTodoView.as_view(), name='delete_todo'),
     # path('todo/<int:pk>/update/', UpdateTodoView.as_view(), name='update_todo'),
     #
     # path('projects/', Project_view.as_view(), name='projects'),
-    # path('projects/<int:pk>/', Watch_project_view.as_view(), name='watch_project'),
-    # path('projects/add/', Create_project_view.as_view(), name='add project'),
+    path('products/<int:pk>/', Watch_product_view.as_view(), name='watch_product'),
+    path('products/add/', Create_product_view.as_view(), name='add_product'),
     # path('projects/<int:pk>/to_do_action/add/', ProjectToDoCreateView.as_view(),
     #      name='project_todo_add'),
-    # path('projects/<int:pk>/update/', ProjectUpdateView.as_view(), name='update_project'),
+    path('products/<int:pk>/update/', ProductUpdateView.as_view(), name='update_product'),
     # path('projects/<int:pk>/manage_team/', ManageTeamView.as_view(), name='manage_team'),
-    # path('projects/<int:pk>/delete/', ProjectDeleteView.as_view(), name='delete_project'),
+    path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='delete_product'),
     #
-    # path('accounts/', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

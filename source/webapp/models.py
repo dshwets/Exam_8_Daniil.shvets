@@ -89,7 +89,7 @@ class Product(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название проекта', )
     category = models.CharField(max_length=15, choices=CATEGORY_CHOICES, verbose_name='Категория')
     description = models.TextField(max_length=3000, null=True, blank=True, verbose_name='Описание товара')
-    image = models.ImageField(null=True, blank=True, upload_to='user_pics', verbose_name='Аватара')
+    image = models.ImageField(null=True, blank=True, upload_to='user_pics', verbose_name='Картинка')
 
     def __str__(self):
         return f"{self.title}"

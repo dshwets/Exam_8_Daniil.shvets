@@ -3,11 +3,11 @@
 Projects List
 {% endblock %}
 {% block menu %}
-    {% if perms.webapp.add_project %}
+{#    {% if perms.webapp.add_project %}#}
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'add project' %}">Create new Project <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'add_product' %}">Create new Product <span class="sr-only">(current)</span></a>
       </li>
-    {% endif %}
+{#    {% endif %}#}
 {% endblock %}
 {% block content %}
 

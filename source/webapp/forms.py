@@ -3,12 +3,16 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.core.exceptions import ValidationError
 from django.forms import MultipleChoiceField
 
-# from .models import Statuses, Issues, TO_DO_List, Project
+from .models import Product
+
+# class DateInput(forms.DateInput):
+#     input_type = 'date'
 
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
-
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['title', 'category', 'description', 'image']
 
 # class ToDoForm(forms.ModelForm):
 #     class Meta:

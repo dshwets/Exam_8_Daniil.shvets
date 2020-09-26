@@ -1,0 +1,61 @@
+{% extends 'todo/../base.html' %}
+{% load static %}
+
+{% block title %}
+    Product
+{% endblock %}
+{% block menu %}
+{#    {% if perms.webapp.add_to_do_list and request.user in object.team.all %}#}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'update_product' object.pk %}">Update Product<span class="sr-only">(current)</span></a>
+        </li>
+{#    {% endif %}#}
+{#    {% if perms.webapp.can_change_team and request.user in object.team.all %}#}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'delete_product' object.pk %}">Delete Product<span class="sr-only">(current)</span></a>
+        </li>
+{#    {% endif %}#}
+{% endblock %}
+{% block content %}
+<div class="container">
+    <p class="mt-5">Title:<a href="
+{#            {% url 'watch_prodct' project.pk %}#}
+    #">{{ object.title }}</a></p>
+    <p>Description: {{ object.description }}</p>
+    <p>Category: {{ object.get_category_display }}</p>
+    {% if object.image %}
+        <img class="avatar" src="{{ object.image.url }}" width="250" height="250" alt="product picture">
+    {% else %}
+        <img class="avatar" src="{% static 'Заглушка.jpg' %}" width="250" height="250" alt="product picture">
+    {% endif %}
+{#    <p class="mt-5">Title: {{ object.title }}</p>#}
+{#    <div class="d-flex"><p class="d-inline">Description: </p> <pre class="border d-inline-block mb-0 ml-2">{{ object.description }}</pre>#}
+{#    </div>#}
+{#    <p>Start date: {{ object.begin_date }}</p>#}
+{#    <p>End date: {{ object.end_date }}</p>#}
+{#    {% if object.team %}#}
+{#        <h4>Команда:</h4>#}
+{#        {% for member in object.team.all %}#}
+{#            <p> >>>> <a href="{% url 'accounts:detail' member.pk %}">{{ member.username }}</a></p>#}
+{#        {% endfor %}#}
+{##}
+{#    {% endif %}#}
+    <br><br>
+{#    {% for to_do_action in object.projects.all %}#}
+{#        <p>Summary: <a href="{% url 'watch_todo' to_do_action.pk %}">{{ to_do_action.summary }}</a></p>#}
+{#        <p>Description: {{ to_do_action.description }}</p>#}
+{#        <p>Status: {{ to_do_action.status }}</p>#}
+{#        <p>Created at: {{ to_do_action.created_at }}</p>#}
+{##}
+{#        {% if perms.webapp.delete_to_do_list and request.user in object.team.all %}#}
+{#           <form class="d-inline" action="{% url 'delete_todo' to_do_action.pk %}" method="get">#}
+{#            <button type="submit" class="btn btn-secondary">Удалить</button>#}
+{#            </form>#}
+{#        {% endif %}#}
+{#        {% if perms.webapp.change_to_do_list and request.user in object.team.all %}#}
+{#            <a href="{% url 'update_todo' to_do_action.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>#}
+{#        {% endif %}#}
+{#        <br><br>#}
+{#    {% endfor %}#}
+
+{% endblock %}

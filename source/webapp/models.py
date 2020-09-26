@@ -36,5 +36,5 @@ class Review(models.Model):
     product = models.ForeignKey('webapp.Product', related_name='reviews', verbose_name='продукт',
                                 on_delete=models.CASCADE)
     review = models.TextField(max_length=2000, verbose_name='Описание товара')
-    mark = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
+    mark = models.IntegerField(default=0, validators=[MaxValueValidator(5), MinValueValidator(1)])
     status = models.BooleanField(default=False, verbose_name="Статус")

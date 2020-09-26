@@ -103,16 +103,6 @@ class Product(models.Model):
         return round(average, 1)
 
 
-
-
-
-
-        # total = cls.get_with_total().filter(session=session).aggregate(cart_total=Sum('total'))
-        # if total['cart_total'] is None:
-        #     total['cart_total'] = 0
-        # return total['cart_total']
-
-
 class Review(models.Model):
     author = models.ForeignKey(get_user_model(), related_name='reviews', verbose_name='Отзыв', on_delete=models.CASCADE)
     product = models.ForeignKey('webapp.Product', related_name='reviews', verbose_name='продукт',

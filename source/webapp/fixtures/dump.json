@@ -61,12 +61,22 @@
 },
 {
   "model": "webapp.review",
-  "pk": 6,
+  "pk": 7,
   "fields": {
-    "author": 1,
-    "product": 1,
-    "review": "\u043d\u0435 \u043e\u0441\u043e\u0431\u043e",
-    "mark": 3
+    "author": 2,
+    "product": 2,
+    "review": "\u0410 \u0443 \u043c\u0435\u043d\u044f \u043d\u0435 \u0445\u043e\u043b\u043e\u0434\u0438\u0442 :\u0421 \u043f\u043b\u043e\u0445\u043e\u0439 \u043a\u043e\u043d\u0434\u0435\u0440",
+    "mark": 2
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "avatar": "",
+    "about": null,
+    "github_account": null
   }
 }
 ]

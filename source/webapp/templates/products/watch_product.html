@@ -49,9 +49,7 @@
     <h1>Отзывы:</h1>
     {% for review in reviews %}
         <div class="container">
-            <p>Author: <a href="
-{#                {% url 'watch_todo' to_do_action.pk %}#}
-            ">{{ review.author.get_full_name }}</a></p>
+            <p>Author: <a href="{% url 'accounts:detail' review.author.pk %}">{{ review.author.get_full_name }}</a></p>
             <p>Email: {{ review.author.email }}</p>
             <p>Text: {{ review.review }}</p>
             <p>Mark: {{ review.mark }}</p>

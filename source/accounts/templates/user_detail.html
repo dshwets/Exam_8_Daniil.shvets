@@ -12,11 +12,25 @@
 {% block content %}
 <div class="container">
 
-    <h3 class="mt-5">User: {{ user_obj.username }}</h3>
+    <h3 class="mt-5">Username: {{ user_obj.username }}</h3>
+    <p>ФИО: {{ user_obj.get_full_name }}</p>
+    <p>Email: {{ user_obj.email }}</p>
     {% if user_obj.profile.avatar %}
         <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
     {% endif %}
     <a href="{{ user_obj.profile.github_account }}" class="d-block mt-4"> Github_account</a>
     <textarea name="" id="" cols="30" rows="10" readonly>{{ user_obj.profile.about }}</textarea>
-    {% include 'partial/product_list.html' %}
+    <br><br>
+    <h4>User Reviews:</h4>
+        {% for review in user_obj.reviews.all %}
+        <div class="container">
+            <p>Author: <a href="{% url 'accounts:detail' review.author.pk %}">{{ review.author.get_full_name }}</a></p>
+            <p>Email: {{ review.author.email }}</p>
+            <p>Text: {{ review.review }}</p>
+            <p>Mark: {{ review.mark }}</p>
+        <p><a href="{% url 'update_review' review.pk %}">Update</a><a
+                class="ml-3" href="{% url 'delete_review' review.pk %}">Delete</a></p>
+        </div>
+        <br><br>
+        {% endfor %}
 {% endblock %}

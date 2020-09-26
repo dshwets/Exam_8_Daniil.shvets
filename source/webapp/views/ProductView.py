@@ -13,16 +13,21 @@ class Products_view(ListView):
     context_object_name = 'products'
 
 
+
+
 class Watch_product_view(DetailView):
     template_name = 'products/watch_product.html'
     model = Product
 
-    # def get(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     if not self.object.is_active:
-    #         raise Http404
-    #     context = self.get_context_data(object=self.object)
-    #     return self.render_to_response(context)
+    def get_context_data(self, **kwargs):
+        kwargs['reviews'] = self.object.reviews.all()
+        average = 0
+        if kwargs['reviews']:
+            for review in self.object.reviews.all():
+                average += review.mark
+            average = average / self.object.reviews.count()
+        kwargs['avg_rating'] = round(average, 1)
+        return super().get_context_data(**kwargs)
 
 
 class Create_product_view(CreateView):

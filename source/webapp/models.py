@@ -94,6 +94,24 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+    def get_avg_reviews(self):
+        average = 0
+        if self.reviews.count():
+            for review in self.reviews.all():
+                average += review.mark
+            average = average / self.reviews.count()
+        return round(average, 1)
+
+
+
+
+
+
+        # total = cls.get_with_total().filter(session=session).aggregate(cart_total=Sum('total'))
+        # if total['cart_total'] is None:
+        #     total['cart_total'] = 0
+        # return total['cart_total']
+
 
 class Review(models.Model):
     author = models.ForeignKey(get_user_model(), related_name='reviews', verbose_name='Отзыв', on_delete=models.CASCADE)

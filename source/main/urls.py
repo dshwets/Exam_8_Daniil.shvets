@@ -24,6 +24,7 @@ from django.conf.urls.static import static
 
 from webapp.views.ProductView import Products_view, Watch_product_view, Create_product_view, ProductUpdateView, \
     ProductDeleteView
+from webapp.views.Comment_views import ProductReviewCreateView, ReviewUpdateView,ReviewDeleteView
 from django.contrib.auth.views import LogoutView, LoginView
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +42,9 @@ urlpatterns = [
     path('products/<int:pk>/update/', ProductUpdateView.as_view(), name='update_product'),
     # path('projects/<int:pk>/manage_team/', ManageTeamView.as_view(), name='manage_team'),
     path('products/<int:pk>/delete/', ProductDeleteView.as_view(), name='delete_product'),
+    path('products/<int:pk>/comments/add', ProductReviewCreateView.as_view(), name='add_review'),
+    path('products/<int:pk>/comments/update', ReviewUpdateView.as_view(), name='update_review'),
+    path('products/<int:pk>/comments/delete', ReviewDeleteView.as_view(), name='delete_review'),
     #
     path('accounts/', include('accounts.urls')),
 

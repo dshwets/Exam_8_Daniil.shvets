@@ -1,4 +1,4 @@
-{% extends 'todo/../base.html' %}
+{% extends 'base.html' %}
 {% block title %}
 Delete Product
 {% endblock %}
@@ -8,7 +8,6 @@ Delete Product
     <p>Product category: {{ object.get_category_display }}</p>
     <form method="POST" action="{% url 'delete_product' object.pk%}">
         {% csrf_token %}
-{#        <input type="submit" value="Confirm">#}
         <button type="submit" class="btn btn-danger">Удалить</button>
         <a href="{% url 'watch_product' object.pk %}"><button type="button" class="btn btn-secondary">Отмена</button></a>
     </form>

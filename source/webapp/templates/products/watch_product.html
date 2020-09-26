@@ -1,4 +1,4 @@
-{% extends 'todo/../base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}
@@ -24,7 +24,6 @@
 {% block content %}
 <div class="container">
     <p class="mt-5">Title:<a href="
-{#            {% url 'watch_prodct' project.pk %}#}
     #">{{ object.title }}</a></p>
     <p>Description: {{ object.description }}</p>
     <p>Category: {{ object.get_category_display }}</p>
@@ -34,18 +33,6 @@
         <img class="avatar" src="{% static 'Заглушка.jpg' %}" width="250" height="250" alt="product picture">
     {% endif %}
     <h3>Average rating: {{ avg_rating }}</h3>
-{#    <p class="mt-5">Title: {{ object.title }}</p>#}
-{#    <div class="d-flex"><p class="d-inline">Description: </p> <pre class="border d-inline-block mb-0 ml-2">{{ object.description }}</pre>#}
-{#    </div>#}
-{#    <p>Start date: {{ object.begin_date }}</p>#}
-{#    <p>End date: {{ object.end_date }}</p>#}
-{#    {% if object.team %}#}
-{#        <h4>Команда:</h4>#}
-{#        {% for member in object.team.all %}#}
-{#            <p> >>>> <a href="{% url 'accounts:detail' member.pk %}">{{ member.username }}</a></p>#}
-{#        {% endfor %}#}
-{##}
-{#    {% endif %}#}
     <br><br>
     <h1>Отзывы:</h1>
     {% for review in reviews %}
@@ -65,16 +52,6 @@
 
         </div>
         <br><br>
-        {##}
-{#        {% if perms.webapp.delete_to_do_list and request.user in object.team.all %}#}
-{#           <form class="d-inline" action="{% url 'delete_todo' to_do_action.pk %}" method="get">#}
-{#            <button type="submit" class="btn btn-secondary">Удалить</button>#}
-{#            </form>#}
-{#        {% endif %}#}
-{#        {% if perms.webapp.change_to_do_list and request.user in object.team.all %}#}
-{#            <a href="{% url 'update_todo' to_do_action.pk %}"><button type="button" class="btn btn-primary">Обновить</button></a>#}
-{#        {% endif %}#}
-{#        <br><br>#}
     {% endfor %}
 
 {% endblock %}

@@ -7,7 +7,6 @@ from django.contrib.auth.admin import UserAdmin
 
 admin.site.register(Product)
 admin.site.register(Review)
-# admin.site.register(Issues)
 
 
 class ProfileInline(admin.StackedInline):
@@ -23,4 +22,3 @@ User = get_user_model()
 admin.site.unregister(User)
 
 admin.site.register(User, ProfileAdmin)
-# admin.site.register(Project)

@@ -55,11 +55,3 @@ class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'products/delete_product.html'
     success_url = reverse_lazy('index_view')
     permission_required = 'webapp.delete_product'
-
-    # def delete(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     success_url = super().get_success_url()
-    #     print(self.object.is_active)
-    #     self.object.is_active = False
-    #     self.object.save()
-    #     return HttpResponseRedirect(success_url)

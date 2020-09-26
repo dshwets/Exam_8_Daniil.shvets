@@ -5,15 +5,16 @@
     Product
 {% endblock %}
 {% block menu %}
-{#    {% if perms.webapp.add_to_do_list and request.user in object.team.all %}#}
+    {% if perms.webapp.change_product %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'update_product' object.pk %}">Update Product<span class="sr-only">(current)</span></a>
         </li>
-{#    {% endif %}#}
-{#    {% if perms.webapp.can_change_team and request.user in object.team.all %}#}
+    {% endif %}
+    {% if perms.webapp.delete_product %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'delete_product' object.pk %}">Delete Product<span class="sr-only">(current)</span></a>
         </li>
+    {% endif %}
     {% if request.user.is_authenticated %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'add_review' object.pk %}">Add Review<span class="sr-only">(current)</span></a>
@@ -53,8 +54,15 @@
             <p>Email: {{ review.author.email }}</p>
             <p>Text: {{ review.review }}</p>
             <p>Mark: {{ review.mark }}</p>
-        <p><a href="{% url 'update_review' review.pk %}">Update</a><a
-                class="ml-3" href="{% url 'delete_review' review.pk %}">Delete</a></p>
+                <p>
+                    {% if perms.webapp.change_review or review.author == request.user %}
+                        <a href="{% url 'update_review' review.pk %}">Update</a>
+                    {% endif %}
+                    {% if perms.webapp.delete_review or review.author == request.user %}
+                        <a class="ml-3" href="{% url 'delete_review' review.pk %}">Delete</a>
+                    {% endif %}
+                </p>
+
         </div>
         <br><br>
         {##}

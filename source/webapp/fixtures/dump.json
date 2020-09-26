@@ -70,10 +70,40 @@
   }
 },
 {
+  "model": "webapp.review",
+  "pk": 8,
+  "fields": {
+    "author": 2,
+    "product": 1,
+    "review": "\u041d\u0443 \u043c\u043d\u0435 \u043e\u043a",
+    "mark": 4
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 9,
+  "fields": {
+    "author": 2,
+    "product": 3,
+    "review": "\u042d\u0442\u043e \u0431\u044b\u043b\u0430 \u0441\u0430\u043c\u0430\u044f \u043b\u0443\u0447\u0448\u0430\u044f \u0444\u0438\u0433\u043d\u044f \u0432 \u043c\u043e\u0435\u0439 \u0436\u0438\u0437\u043d\u0438 !",
+    "mark": 5
+  }
+},
+{
   "model": "accounts.profile",
   "pk": 1,
   "fields": {
     "user": 2,
+    "avatar": "",
+    "about": null,
+    "github_account": null
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 3,
     "avatar": "",
     "about": null,
     "github_account": null

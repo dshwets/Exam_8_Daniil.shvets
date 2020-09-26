@@ -30,21 +30,21 @@ class Watch_product_view(DetailView):
         return super().get_context_data(**kwargs)
 
 
-class Create_product_view(CreateView):
+class Create_product_view(PermissionRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/create_product.html'
-    # permission_required = 'webapp.add_project'
+    permission_required = 'webapp.add_product'
 
     def get_success_url(self):
         return reverse('watch_product', kwargs={'pk': self.object.pk})
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(PermissionRequiredMixin ,UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/update_product.html'
-    # permission_required = 'webapp.change_project'
+    permission_required = 'webapp.change_product'
 
     def get_success_url(self):
         return reverse('watch_product', kwargs={'pk': self.object.pk})
@@ -54,7 +54,7 @@ class ProductDeleteView(PermissionRequiredMixin, DeleteView):
     model = Product
     template_name = 'products/delete_product.html'
     success_url = reverse_lazy('index_view')
-    permission_required = 'webapp.delete_project'
+    permission_required = 'webapp.delete_product'
 
     # def delete(self, request, *args, **kwargs):
     #     self.object = self.get_object()
